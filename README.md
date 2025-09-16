@@ -1,6 +1,6 @@
 # ComfyUI-Prepack
 
-**Version: 1.0.0**
+**Version: 1.2.0**
 
 A comprehensive workflow optimization toolkit for ComfyUI, providing essential nodes for model management, sampling control, and workflow enhancement with professional-grade reliability.
 
