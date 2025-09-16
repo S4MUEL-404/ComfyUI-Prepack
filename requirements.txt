@@ -1,0 +1,9 @@
+# ComfyUI-Prepack Custom Node Requirements
+# Essential dependencies for workflow optimization and control
+
+# Core dependencies (usually available in ComfyUI)
+torch>=1.13.0
+numpy>=1.21.0
+
+# No additional dependencies required
+# This package uses only built-in ComfyUI functionality
