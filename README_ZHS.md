@@ -114,4 +114,4 @@ ComfyUI-Prepack/
 
 **作者:** S4MUEL  
 **网站:** [s4muel.com](https://s4muel.com)  
-**版本:** 1.0.0
+**版本:** 1.2.0
