@@ -44,7 +44,7 @@
    ```
 2. 克隆此儲存庫：
    ```
-   git clone https://github.com/S4MUEL/ComfyUI-Prepack.git
+   git clone https://github.com/S4MUEL-404/ComfyUI-Prepack.git
    ```
 3. 安裝相依套件（最小需求）：
    ```

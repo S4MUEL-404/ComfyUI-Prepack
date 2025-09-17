@@ -44,7 +44,7 @@ A comprehensive workflow optimization toolkit for ComfyUI, providing essential n
    ```
 2. Clone this repository:
    ```
-   git clone https://github.com/S4MUEL/ComfyUI-Prepack.git
+   git clone https://github.com/S4MUEL-404/ComfyUI-Prepack.git
    ```
 3. Install dependencies (minimal requirements):
    ```
