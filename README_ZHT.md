@@ -1,6 +1,6 @@
 # ComfyUI-Prepack
 
-**版本: 1.2.0**
+**版本: 1.3.0**
 
 專為 ComfyUI 設計的綜合工作流優化工具包，提供模型管理、採樣控制和工作流強化的核心節點，具備專業級可靠性。
 
@@ -18,12 +18,16 @@
 - **💀Prepack Seed** - 智慧種子管理，具備隨機生成和歷史追蹤功能
 
 ### 工作流管理
-- **💀Prepack SetPipe** - 設定和儲存工作流管道狀態
-- **💀Prepack GetPipe** - 取得和使用已儲存的管道狀態
+- **💀Prepack SetPipe** - 設定和儲存工作流管道狀態（現在包括 LoRA 路徑支援）
+- **💀Prepack GetPipe** - 取得和使用已儲存的管道狀態（現在包括 LoRA 路徑輸出）
 
 ### 邏輯運算
 - **💀Prepack Logic Int** - 整數邏輯運算和比較
 - **💀Prepack Logic String** - 字串邏輯運算和操作
+
+### 整數操作
+- **💀Prepack Int Combine** - 將最多 4 個整數合併為字串，可選分隔符
+- **💀Prepack Int Split** - 使用可選分隔符將字串拆分為最多 4 個整數
 
 ## 📦 安裝方法
 
@@ -92,7 +96,9 @@ ComfyUI-Prepack/
 │   ├── modelDualCLIP.py    # 雙 CLIP 模型
 │   ├── modelSingleCLIP.py  # 單 CLIP 模型
 │   ├── logicInt.py     # 整數邏輯
-│   └── logicString.py  # 字串邏輯
+│   ├── logicString.py  # 字串邏輯
+│   ├── intCombine.py   # 整數合併
+│   └── intSplit.py     # 整數拆分
 ├── js/                 # JavaScript UI 擴展
 │   ├── seed.js         # 種子管理 UI
 │   ├── loraText.js     # LoRA 文本整合
@@ -114,4 +120,4 @@ ComfyUI-Prepack/
 
 **作者:** S4MUEL  
 **網站:** [s4muel.com](https://s4muel.com)  
-**版本:** 1.2.0
+**版本:** 1.3.0

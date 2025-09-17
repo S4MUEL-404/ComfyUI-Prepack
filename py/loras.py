@@ -93,10 +93,6 @@ class PrepackLoras:
                 "lora_name_1": (lora_list, {
                     "tooltip": "Select the first LoRA file to apply (choose 'None' to skip)."
                 }),
-                "lora_text_1": ("STRING", {
-                    "default": "None",
-                    "tooltip": "Select text document associated with the first LoRA (automatically populated)."
-                }),
                 "strength_model_1": ("FLOAT", {
                     "default": 1.0,
                     "min": -100.0,
@@ -111,18 +107,18 @@ class PrepackLoras:
                     "step": 0.01,
                     "tooltip": "Strength for the CLIP encoder. Typical range [-2.0, 2.0]; 0 disables."
                 }),
+                "lora_text_1": ("STRING", {
+                    "default": "None",
+                    "tooltip": "Select text document associated with the first LoRA (automatically populated)."
+                }),
             },
             "optional": {
                 "lora_name_2": (lora_list, {
                     "default": "None",
                     "tooltip": "Select the second LoRA file to apply (optional, choose 'None' to skip)."
                 }),
-                "lora_text_2": ("STRING", {
-                    "default": "None",
-                    "tooltip": "Select text document associated with the second LoRA (automatically populated)."
-                }),
                 "strength_model_2": ("FLOAT", {
-                    "default": 0.0,
+                    "default": 1.0,
                     "min": -100.0,
                     "max": 100.0,
                     "step": 0.01,
@@ -139,12 +135,8 @@ class PrepackLoras:
                     "default": "None",
                     "tooltip": "Select the third LoRA file to apply (optional, choose 'None' to skip)."
                 }),
-                "lora_text_3": ("STRING", {
-                    "default": "None",
-                    "tooltip": "Select text document associated with the third LoRA (automatically populated)."
-                }),
                 "strength_model_3": ("FLOAT", {
-                    "default": 0.0,
+                    "default": 1.0,
                     "min": -100.0,
                     "max": 100.0,
                     "step": 0.01,
@@ -156,6 +148,14 @@ class PrepackLoras:
                     "max": 100.0,
                     "step": 0.01,
                     "tooltip": "Strength for the CLIP encoder. Typical range [-2.0, 2.0]; 0 disables."
+                }),
+                "lora_text_2": ("STRING", {
+                    "default": "None",
+                    "tooltip": "Select text document associated with the second LoRA (automatically populated)."
+                }),
+                "lora_text_3": ("STRING", {
+                    "default": "None",
+                    "tooltip": "Select text document associated with the third LoRA (automatically populated)."
                 }),
             }
         }
@@ -174,18 +174,13 @@ class PrepackLoras:
     DESCRIPTION = "Load and apply up to 3 LoRA adapters to both the diffusion model and the CLIP encoder; also returns a formatted LoRA prompt string."
     
     @classmethod
-    def IS_CHANGED(s, **kwargs):
-        # Always allow execution to avoid validation issues with dynamic inputs
-        return float("nan")
-    
-    @classmethod
     def VALIDATE_INPUTS(s, **kwargs):
         # Custom validation that allows any text file name
         return True
 
     def load_loras(self, model, clip, lora_name_1, lora_text_1, strength_model_1, strength_clip_1, 
-                   lora_name_2="None", lora_text_2="None", strength_model_2=0.0, strength_clip_2=1.0,
-                   lora_name_3="None", lora_text_3="None", strength_model_3=0.0, strength_clip_3=1.0):
+                   lora_name_2="None", lora_text_2="None", strength_model_2=1.0, strength_clip_2=1.0,
+                   lora_name_3="None", lora_text_3="None", strength_model_3=1.0, strength_clip_3=1.0):
         
         loras_to_load = [(lora_name_1, float(strength_model_1), float(strength_clip_1))]
         if lora_name_2 != "None":

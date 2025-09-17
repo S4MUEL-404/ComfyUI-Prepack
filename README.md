@@ -1,6 +1,6 @@
 # ComfyUI-Prepack
 
-**Version: 1.2.0**
+**Version: 1.3.0**
 
 A comprehensive workflow optimization toolkit for ComfyUI, providing essential nodes for model management, sampling control, and workflow enhancement with professional-grade reliability.
 
@@ -18,12 +18,16 @@ A comprehensive workflow optimization toolkit for ComfyUI, providing essential n
 - **💀Prepack Seed** - Smart seed management with random generation and history tracking
 
 ### Workflow Management
-- **💀Prepack SetPipe** - Set and store workflow pipeline states
-- **💀Prepack GetPipe** - Retrieve and use stored pipeline states
+- **💀Prepack SetPipe** - Set and store workflow pipeline states (now includes LoRA path support)
+- **💀Prepack GetPipe** - Retrieve and use stored pipeline states (now includes LoRA path output)
 
 ### Logic Operations
 - **💀Prepack Logic Int** - Integer logic operations and comparisons
 - **💀Prepack Logic String** - String logic operations and manipulations
+
+### Integer Operations
+- **💀Prepack Int Combine** - Combine up to 4 integers into a string with selectable separator
+- **💀Prepack Int Split** - Split a string into up to 4 integers using selectable separator
 
 ## 📦 Installation
 
@@ -92,7 +96,9 @@ ComfyUI-Prepack/
 │   ├── modelDualCLIP.py    # Dual CLIP models
 │   ├── modelSingleCLIP.py  # Single CLIP models
 │   ├── logicInt.py     # Integer logic
-│   └── logicString.py  # String logic
+│   ├── logicString.py  # String logic
+│   ├── intCombine.py   # Integer combination
+│   └── intSplit.py     # Integer splitting
 ├── js/                 # JavaScript UI extensions
 │   ├── seed.js         # Seed management UI
 │   ├── loraText.js     # LoRA text integration
@@ -114,4 +120,4 @@ This project is open source. Please respect the licensing terms.
 
 **Author:** S4MUEL  
 **Website:** [s4muel.com](https://s4muel.com)  
-**Version:** 1.2.0
+**Version:** 1.3.0

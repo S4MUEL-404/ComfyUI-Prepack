@@ -181,32 +181,13 @@ app.registerExtension({
                     widgetData.text.computeSize = () => [0, -4];
                 }
                 
-                // Position combo widgets after their corresponding strength_clip widgets
-                setTimeout(() => {
+                // Initialize all widgets without complex repositioning to avoid widget state corruption
+                setTimeout(async () => {
                     for (const widgetData of comboWidgets) {
-                        const strengthClipWidget = this.widgets.find(w => w.name === `strength_clip_${widgetData.index}`);
-                        const comboIndex = this.widgets.indexOf(widgetData.combo);
-                        
-                        if (strengthClipWidget && comboIndex !== -1) {
-                            // Remove combo widget from current position
-                            this.widgets.splice(comboIndex, 1);
-                            
-                            // Find the new position after strength_clip widget
-                            const strengthIndex = this.widgets.indexOf(strengthClipWidget);
-                            if (strengthIndex !== -1) {
-                                this.widgets.splice(strengthIndex + 1, 0, widgetData.combo);
-                            }
-                        }
+                        await updateTextFiles(widgetData);
                     }
-                    
-                    // Initialize all widgets after repositioning
-                    setTimeout(async () => {
-                        for (const widgetData of comboWidgets) {
-                            await updateTextFiles(widgetData);
-                        }
-                        await updateTextContent();
-                    }, 50);
-                }, 50);
+                    await updateTextContent();
+                }, 200);  // Increased delay to ensure stable widget state
             };
         }
     }

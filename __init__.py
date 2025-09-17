@@ -9,6 +9,8 @@ from .py.getpipe import PrepackGetPipe
 from .py.seed import PrepackSeed
 from .py.logicInt import PrepackLogicInt
 from .py.logicString import PrepackLogicString
+from .py.intCombine import PrepackIntCombine
+from .py.intSplit import PrepackIntSplit
 
 # Frontend extension directory for virtual nodes
 WEB_DIRECTORY = "./js"
@@ -25,6 +27,8 @@ NODE_CLASS_MAPPINGS = {
     "PrepackSeed": PrepackSeed,
     "💀Prepack Logic Int": PrepackLogicInt,
     "💀Prepack Logic String": PrepackLogicString,
+    "💀Prepack Int Combine": PrepackIntCombine,
+    "💀Prepack Int Split": PrepackIntSplit,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -39,6 +43,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "PrepackSeed": "💀Prepack Seed",
     "💀Prepack Logic Int": "💀Prepack Logic Int",
     "💀Prepack Logic String": "💀Prepack Logic String",
+    "💀Prepack Int Combine": "💀Prepack Int Combine",
+    "💀Prepack Int Split": "💀Prepack Int Split",
 }
 
 __all__ = [
