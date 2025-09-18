@@ -4,6 +4,10 @@
 # Core dependencies (usually available in ComfyUI)
 torch>=1.13.0
 numpy>=1.21.0
+Pillow>=8.0.0
 
-# No additional dependencies required
-# This package uses only built-in ComfyUI functionality
+# Optional dependencies for SaveByFileName node
+# For video saving functionality
+# opencv-python>=4.5.0
+
+# All other nodes use built-in ComfyUI functionality

@@ -29,6 +29,9 @@
 - **💀Prepack Int Combine** - 将最多 4 个整数合并为字符串，可选分隔符
 - **💀Prepack Int Split** - 使用可选分隔符将字符串拆分为最多 4 个整数
 
+### 文件管理
+- **💀Save By File Name** - 智能文件保存，具备格式保持和自定义命名功能。支持图片（WebP、JPEG、PNG、GIF）、视频（MP4、AVI）和文本文件，具备自动格式检测功能
+
 ## 📦 安装方法
 
 ### 方法一：ComfyUI Manager（推荐）
@@ -81,6 +84,7 @@
 - ✅ **管道管理** - 高效存储和获取工作流状态
 - ✅ **种子管理** - 智能种子控制，具备历史跟踪
 - ✅ **逻辑运算** - 综合逻辑和比较工具
+- ✅ **文件管理** - 智能文件保存，具备格式保持和自定义命名功能
 
 ## 📁 项目结构
 
@@ -98,7 +102,8 @@ ComfyUI-Prepack/
 │   ├── logicInt.py     # 整数逻辑
 │   ├── logicString.py  # 字符串逻辑
 │   ├── intCombine.py   # 整数合并
-│   └── intSplit.py     # 整数拆分
+│   ├── intSplit.py     # 整数拆分
+│   └── saveByFileName.py # 智能文件保存
 ├── js/                 # JavaScript UI 扩展
 │   ├── seed.js         # 种子管理 UI
 │   ├── loraText.js     # LoRA 文本集成

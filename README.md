@@ -29,6 +29,9 @@ A comprehensive workflow optimization toolkit for ComfyUI, providing essential n
 - **💀Prepack Int Combine** - Combine up to 4 integers into a string with selectable separator
 - **💀Prepack Int Split** - Split a string into up to 4 integers using selectable separator
 
+### File Management
+- **💀Save By File Name** - Smart file saving with format preservation and custom naming. Supports images (WebP, JPEG, PNG, GIF), videos (MP4, AVI), and text files with automatic format detection
+
 ## 📦 Installation
 
 ### Method 1: ComfyUI Manager (Recommended)
@@ -81,6 +84,7 @@ All dependencies are typically already available in standard ComfyUI installatio
 - ✅ **Pipeline Management** - Store and retrieve workflow states efficiently
 - ✅ **Seed Management** - Smart seed control with history tracking
 - ✅ **Logic Operations** - Comprehensive logic and comparison tools
+- ✅ **File Management** - Smart file saving with format preservation and custom naming
 
 ## 📁 Project Structure
 
@@ -98,7 +102,8 @@ ComfyUI-Prepack/
 │   ├── logicInt.py     # Integer logic
 │   ├── logicString.py  # String logic
 │   ├── intCombine.py   # Integer combination
-│   └── intSplit.py     # Integer splitting
+│   ├── intSplit.py     # Integer splitting
+│   └── saveByFileName.py # Smart file saving
 ├── js/                 # JavaScript UI extensions
 │   ├── seed.js         # Seed management UI
 │   ├── loraText.js     # LoRA text integration
