@@ -1,5 +1,6 @@
 # Ignore summary_md folder
 summary_md/
+.gitignore
 
 # Python
 __pycache__/
