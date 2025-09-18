@@ -1,6 +1,8 @@
 # Ignore summary_md folder
 summary_md/
 .gitignore
+WARP.md
+.cursorignore
 
 # Python
 __pycache__/
