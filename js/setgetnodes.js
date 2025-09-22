@@ -16,7 +16,7 @@ app.registerExtension({
 			"*": { color: "#363636", bgcolor: "#1C1C1C" },
 			IMAGE: { color: "#2E5EA6", bgcolor: "#234880" },
 			MASK: { color: "#3A7A3A", bgcolor: "#295629" },
-			LATENT: { color: "#0d3b66", bgcolor: "#56cfe1" },
+			LATENT: { color: "#6E3A8C", bgcolor: "#522B69" },
 			MODEL: { color: "#6E3A8C", bgcolor: "#522B69" },
 			CLIP: { color: "#C7A63A", bgcolor: "#9F842D" },
 			VAE: { color: "#A63A3A", bgcolor: "#812D2D" },
