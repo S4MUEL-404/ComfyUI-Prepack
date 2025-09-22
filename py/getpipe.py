@@ -11,13 +11,13 @@ class PrepackGetPipe:
         }
 
     RETURN_TYPES = ("MODEL", "CLIP", "VAE", "STRING", "STRING", "CONDITIONING", "CONDITIONING", "LATENT", "INT", "INT", "FLOAT", "FLOAT")
-    RETURN_NAMES = ("model", "clip", "vae", "lora_text", "lora_path", "positive", "negative", "latent_image", "seed", "steps", "cfg", "denoise")
+    RETURN_NAMES = ("model", "clip", "vae", "lora_path", "lora_text", "positive", "negative", "latent_image", "seed", "steps", "cfg", "denoise")
     OUTPUT_TOOLTIPS = (
         "The diffusion model from the pipe object (can be None).",
         "The CLIP model from the pipe object (can be None).",
         "The VAE from the pipe object (can be None).",
-        "The formatted LoRA prompt string from the pipe object (can be None).",
         "The LoRA model path from the pipe object (can be None).",
+        "The formatted LoRA prompt string from the pipe object (can be None).",
         "The positive conditioning from the pipe object (can be None).",
         "The negative conditioning from the pipe object (can be None).",
         "The latent image from the pipe object (can be None).",
@@ -35,8 +35,8 @@ class PrepackGetPipe:
             pipe.get("model", None),
             pipe.get("clip", None),
             pipe.get("vae", None),
-            pipe.get("lora_text", None),
             pipe.get("lora_path", None),
+            pipe.get("lora_text", None),
             pipe.get("positive", None),
             pipe.get("negative", None),
             pipe.get("latent_image", None),
