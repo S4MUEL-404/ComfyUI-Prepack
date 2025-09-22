@@ -53,7 +53,7 @@ app.registerExtension({
                 // Create text content display widget
                 let textContentWidget = null;
                 
-                const updateTextFiles = async (widgetData) => {
+                const updateTextFiles = async (widgetData, preserveSelection = true) => {
                     try {
                         const loraName = widgetData.name.value;
                         if (!loraName || loraName === "None") {
@@ -64,6 +64,9 @@ app.registerExtension({
                             return;
                         }
                         
+                        // Store current selection before updating options
+                        const currentSelection = preserveSelection ? widgetData.text.value : null;
+                        
                         // Fetch available text files
                         const response = await api.fetchApi(`/prepack/lora-texts/${encodeURIComponent2(loraName)}`);
                         const textFiles = await response.json();
@@ -71,10 +74,24 @@ app.registerExtension({
                         if (textFiles && textFiles.length > 0) {
                             // Update combo options
                             widgetData.combo.options.values = ["None", ...textFiles];
-                            widgetData.combo.value = textFiles[0]; // Select first text file by default
                             
-                            // Update hidden string widget with selected value
-                            widgetData.text.value = textFiles[0];
+                            // Determine which value to set
+                            let valueToSet = "None"; // Default to None
+                            
+                            if (preserveSelection && currentSelection !== null && currentSelection !== undefined) {
+                                // Always preserve the current selection if it exists in the options
+                                // This includes preserving "None" selection
+                                if (currentSelection === "None" || textFiles.includes(currentSelection)) {
+                                    valueToSet = currentSelection;
+                                }
+                                // If the current selection is not available, keep default "None"
+                            } else if (!preserveSelection && textFiles.length > 0) {
+                                // Only auto-select first file when explicitly requested (new node creation)
+                                valueToSet = textFiles[0];
+                            }
+                            
+                            widgetData.combo.value = valueToSet;
+                            widgetData.text.value = valueToSet;
                         } else {
                             // No text files found
                             widgetData.combo.options.values = ["None"];
@@ -163,7 +180,8 @@ app.registerExtension({
                     const originalLoraCallback = widgetData.name.callback;
                     widgetData.name.callback = function() {
                         const result = originalLoraCallback?.apply(this, arguments) ?? widgetData.name.value;
-                        updateTextFiles(widgetData).then(() => updateTextContent());
+                        // When LoRA name changes, preserve current text selection if possible
+                        updateTextFiles(widgetData, true).then(() => updateTextContent());
                         return result;
                     };
                     
@@ -184,7 +202,10 @@ app.registerExtension({
                 // Initialize all widgets without complex repositioning to avoid widget state corruption
                 setTimeout(async () => {
                     for (const widgetData of comboWidgets) {
-                        await updateTextFiles(widgetData);
+                        // On initialization, always preserve existing selection (including "None")
+                        // Only auto-select first file if there's no existing value at all (undefined/null/empty)
+                        const hasExistingSelection = widgetData.text.value !== undefined && widgetData.text.value !== null && widgetData.text.value !== "";
+                        await updateTextFiles(widgetData, hasExistingSelection);
                     }
                     await updateTextContent();
                 }, 200);  // Increased delay to ensure stable widget state

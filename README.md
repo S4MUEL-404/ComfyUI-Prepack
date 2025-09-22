@@ -1,6 +1,6 @@
 # ComfyUI-Prepack
 
-**Version: 1.3.0**
+**Version: 1.3.1**
 
 A comprehensive workflow optimization toolkit for ComfyUI, providing essential nodes for model management, sampling control, and workflow enhancement with professional-grade reliability.
 
@@ -125,4 +125,4 @@ This project is open source. Please respect the licensing terms.
 
 **Author:** S4MUEL  
 **Website:** [s4muel.com](https://s4muel.com)  
-**Version:** 1.3.0
+**Version:** 1.3.1
