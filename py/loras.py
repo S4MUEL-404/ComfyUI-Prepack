@@ -118,7 +118,7 @@ class PrepackLoras:
                     "tooltip": "Select the second LoRA file to apply (optional, choose 'None' to skip)."
                 }),
                 "strength_model_2": ("FLOAT", {
-                    "default": 1.0,
+                    "default": 0.0,
                     "min": -100.0,
                     "max": 100.0,
                     "step": 0.01,
@@ -136,7 +136,7 @@ class PrepackLoras:
                     "tooltip": "Select the third LoRA file to apply (optional, choose 'None' to skip)."
                 }),
                 "strength_model_3": ("FLOAT", {
-                    "default": 1.0,
+                    "default": 0.0,
                     "min": -100.0,
                     "max": 100.0,
                     "step": 0.01,
