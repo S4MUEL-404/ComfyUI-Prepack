@@ -52,16 +52,71 @@ class PrepackKsamplerAdvanced:
                      }
                 }
 
-    RETURN_TYPES = ("LATENT",)
+    RETURN_TYPES = ("LATENT", "STRING")
+    RETURN_NAMES = ("latent", "info")
+    OUTPUT_TOOLTIPS = (
+        "The processed latent samples with advanced sampling options applied.",
+        "Advanced sampling process information including parameters and status."
+    )
     FUNCTION = "sample"
     CATEGORY = "💀Prepack"
     DESCRIPTION = "Advanced KSampler that returns latent instead of decoded image, matching native behavior exactly."
 
     def sample(self, model, add_noise, noise_seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, start_at_step, end_at_step, return_with_leftover_noise, denoise=1.0):
-        force_full_denoise = True
-        if return_with_leftover_noise == "enable":
-            force_full_denoise = False
-        disable_noise = False
-        if add_noise == "disable":
-            disable_noise = True
-        return common_ksampler(model, noise_seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise=denoise, disable_noise=disable_noise, start_step=start_at_step, last_step=end_at_step, force_full_denoise=force_full_denoise)
+        try:
+            
+            # Calculate output dimensions from latent
+            latent_samples = latent_image.get('samples')
+            if latent_samples is not None:
+                # For most models, latent is downscaled by 8x
+                batch, channels, latent_h, latent_w = latent_samples.shape
+                output_w = latent_w * 8
+                output_h = latent_h * 8
+                latent_info = f"{output_w}x{output_h}"
+            else:
+                latent_info = "Unknown"
+            
+            # Initialize sampling info
+            info = {
+                "latent": latent_info,
+                "seed": str(noise_seed),
+                "steps": str(steps),
+                "cfg": str(cfg),
+                "sampler_name": str(sampler_name),
+                "scheduler": str(scheduler),
+                "denoise": str(denoise),
+                "add_noise": str(add_noise),
+                "start_at_step": str(start_at_step),
+                "end_at_step": str(end_at_step),
+                "return_with_leftover_noise": str(return_with_leftover_noise)
+            }
+            
+            force_full_denoise = True
+            if return_with_leftover_noise == "enable":
+                force_full_denoise = False
+            disable_noise = False
+            if add_noise == "disable":
+                disable_noise = True
+            
+            result = common_ksampler(model, noise_seed, steps, cfg, sampler_name, scheduler, positive, negative, latent_image, denoise=denoise, disable_noise=disable_noise, start_step=start_at_step, last_step=end_at_step, force_full_denoise=force_full_denoise)
+            
+            # Format successful sampling info
+            info_str = f"latent : {info['latent']}\n" + \
+                       f"seed : {info['seed']}\n" + \
+                       f"steps : {info['steps']}\n" + \
+                       f"cfg : {info['cfg']}\n" + \
+                       f"sampler_name : {info['sampler_name']}\n" + \
+                       f"scheduler : {info['scheduler']}\n" + \
+                       f"denoise : {info['denoise']}\n" + \
+                       f"add_noise : {info['add_noise']}\n" + \
+                       f"start_at_step : {info['start_at_step']}\n" + \
+                       f"end_at_step : {info['end_at_step']}\n" + \
+                       f"return_with_leftover_noise : {info['return_with_leftover_noise']}"
+            
+            return (result[0], info_str)
+            
+        except Exception as e:
+            error_msg = f"Error in PrepackKsamplerAdvanced: {str(e)}"
+            print(error_msg)
+            # Return error information when sampling fails
+            return (None, error_msg)

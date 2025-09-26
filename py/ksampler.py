@@ -27,9 +27,12 @@ class PrepackKsampler:
             }
         }
 
-    RETURN_TYPES = ("IMAGE",)
-    RETURN_NAMES = ("image",)
-    OUTPUT_TOOLTIPS = ("Decoded image tensor (NCHW, float32, range 0..1).",)
+    RETURN_TYPES = ("IMAGE", "STRING")
+    RETURN_NAMES = ("image", "info")
+    OUTPUT_TOOLTIPS = (
+        "Decoded image tensor (NCHW, float32, range 0..1).",
+        "Sampling process information including model, prompts, parameters, and status."
+    )
     FUNCTION = "sample_and_decode"
 
     CATEGORY = "💀Prepack"
@@ -38,6 +41,29 @@ class PrepackKsampler:
     def sample_and_decode(self, model, positive, negative, vae, latent_image, seed, steps, cfg, sampler_name, scheduler, denoise=1.0):
         try:
             debug = os.environ.get("PREPACK_DEBUG") == "1"
+            
+            
+            # Calculate output dimensions from latent
+            latent_samples = latent_image.get('samples')
+            if latent_samples is not None:
+                # For most models, latent is downscaled by 8x
+                batch, channels, latent_h, latent_w = latent_samples.shape
+                output_w = latent_w * 8
+                output_h = latent_h * 8
+                latent_info = f"{output_w}x{output_h}"
+            else:
+                latent_info = "Unknown"
+            
+            # Initialize sampling info
+            info = {
+                "latent": latent_info,
+                "seed": str(seed),
+                "steps": str(steps),
+                "cfg": str(cfg),
+                "sampler_name": str(sampler_name),
+                "scheduler": str(scheduler),
+                "denoise": str(denoise)
+            }
 
             latent = latent_image.copy()
             latent_samples = latent.get("samples")
@@ -77,7 +103,18 @@ class PrepackKsampler:
             if debug:
                 print(f"Images shape: {images.shape}")
 
-            return (images,)
+            # Format successful sampling info
+            info_str = f"latent : {info['latent']}\n" + \
+                       f"seed : {info['seed']}\n" + \
+                       f"steps : {info['steps']}\n" + \
+                       f"cfg : {info['cfg']}\n" + \
+                       f"sampler_name : {info['sampler_name']}\n" + \
+                       f"scheduler : {info['scheduler']}\n" + \
+                       f"denoise : {info['denoise']}"
+                       
+            return (images, info_str)
         except Exception as e:
-            print(f"Error in PrepackKsampler: {str(e)}")
-            raise
+            error_msg = f"Error in PrepackKsampler: {str(e)}"
+            print(error_msg)
+            # Return error information when sampling fails
+            return (None, error_msg)
