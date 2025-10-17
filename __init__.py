@@ -12,6 +12,7 @@ from .py.logicString import PrepackLogicString
 from .py.intCombine import PrepackIntCombine
 from .py.intSplit import PrepackIntSplit
 from .py.saveByFileName import PrepackSaveByFileName
+from .py.condArea import PrepackCondArea
 
 # Frontend extension directory for virtual nodes
 WEB_DIRECTORY = "./js"
@@ -31,6 +32,7 @@ NODE_CLASS_MAPPINGS = {
     "💀Prepack Int Combine": PrepackIntCombine,
     "💀Prepack Int Split": PrepackIntSplit,
     "💀Prepack Save By File Name": PrepackSaveByFileName,
+    "PrepackCondArea": PrepackCondArea,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -48,6 +50,7 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "💀Prepack Int Combine": "💀Prepack Int Combine",
     "💀Prepack Int Split": "💀Prepack Int Split",
     "💀Prepack Save By File Name": "💀Save By File Name",
+    "PrepackCondArea": "💀Prepack Cond Area",
 }
 
 __all__ = [
