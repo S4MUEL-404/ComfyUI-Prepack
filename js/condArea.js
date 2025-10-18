@@ -200,6 +200,55 @@ app.registerExtension({
 
             this.size = [260, 510];
             
+            // Override configure method to handle workflow loading
+            const origConfigure = this.configure;
+            this.configure = function(info) {
+                const result = origConfigure ? origConfigure.call(this, info) : undefined;
+                
+                // After configuration, properly initialize the UI with saved parameters
+                setTimeout(() => {
+                    if (this.properties && this.properties.values && this.indexWidget !== -1) {
+                        const indexW = this.widgets[this.indexWidget];
+                        if (indexW) {
+                            const currentIndex = Math.floor(indexW.value);
+                            console.log(`PrepackCondArea - Post-configure initialization for index ${currentIndex}`);
+                            console.log(`PrepackCondArea - Available properties.values:`, this.properties.values);
+                            
+                            // CRITICAL: Use the loadIndexParams function to ensure consistent logic
+                            const loadIndexParams = (indexValue) => {
+                                const idx = Math.floor(indexValue) - 1;
+                                if (idx >= 0 && idx < 5) {
+                                    const values = this.properties.values[idx] || [0, 0, 1, 1, 1.0];
+                                    console.log(`PrepackCondArea - Loading saved values for index ${indexValue}:`, values);
+                                    
+                                    const xW = this.widgets.find(w => w.name === "x");
+                                    const yW = this.widgets.find(w => w.name === "y");
+                                    const widthW = this.widgets.find(w => w.name === "width");
+                                    const heightW = this.widgets.find(w => w.name === "height");
+                                    const strengthW = this.widgets.find(w => w.name === "strength");
+                                    
+                                    if (xW) xW.value = values[0];
+                                    if (yW) yW.value = values[1];
+                                    if (widthW) widthW.value = values[2];
+                                    if (heightW) heightW.value = values[3];
+                                    if (strengthW) strengthW.value = values[4];
+                                }
+                            };
+                            
+                            // Load parameters for the current index
+                            loadIndexParams(currentIndex);
+                            
+                            // Update _lastIndex to current index to avoid conflicts
+                            this._lastIndex = Math.floor(currentIndex) - 1;
+                            
+                            if (app?.canvas?.draw) app.canvas.draw(true);
+                        }
+                    }
+                }, 0);
+                
+                return result;
+            };
+            
             // Initialize properties
             if (!this.properties) this.properties = {};
             if (!this.properties.values) {
@@ -283,11 +332,12 @@ app.registerExtension({
             if (this.indexWidget !== -1) {
                 const indexW = this.widgets[this.indexWidget];
                 const origIndexCallback = indexW.callback;
-                this._lastIndex = Math.floor(indexW.value) - 1;
                 
                 indexW.callback = (v) => {
                     // Save previous index parameters first
-                    savePrevIndexParams();
+                    if (this._lastIndex !== undefined) {
+                        savePrevIndexParams();
+                    }
                     
                     // Update index value
                     indexW.value = v;
@@ -302,8 +352,9 @@ app.registerExtension({
                     if (app?.canvas?.draw) app.canvas.draw(true);
                 };
                 
-                // Initial load of current index parameters
-                loadIndexParams(this._lastIndex + 1);
+                // Initialize _lastIndex but don't load parameters yet
+                // (they will be loaded after the workflow is fully loaded)
+                this._lastIndex = Math.floor(indexW.value) - 1;
             }
             
             // Setup parameter callbacks to save on every change
@@ -322,6 +373,9 @@ app.registerExtension({
                     };
                 }
             });
+            
+            // Removed setTimeout initialization to avoid conflicts with configure method
+            // The configure method already handles proper initialization when workflow is loaded
 
             return r;
         };

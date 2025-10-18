@@ -178,16 +178,20 @@ class PrepackSaveByFileName:
         for placeholder, value in placeholders.items():
             processed = processed.replace(placeholder, value)
         
-        # Remove invalid filename characters
-        invalid_chars = '<>:"/\\|?*'
+        # Remove invalid filename characters but preserve path separators
+        # Allow forward slashes for directory creation
+        invalid_chars = '<>:"|?*'
         for char in invalid_chars:
             processed = processed.replace(char, "_")
+        
+        # Convert backslashes to forward slashes for consistent path handling
+        processed = processed.replace("\\", "/")
         
         return processed
 
 
     def determine_output_path(self, processed_filename, source_path, default_ext, overwrite):
-        """Determine output path with smart extension handling"""
+        """Determine output path with smart extension handling and directory creation"""
         # Check if filename already has an extension
         filename_name, filename_ext = os.path.splitext(processed_filename)
         
@@ -202,6 +206,12 @@ class PrepackSaveByFileName:
         
         # Create full output path
         output_path = os.path.join(self.output_dir, final_filename)
+        
+        # Ensure directory exists
+        output_dir = os.path.dirname(output_path)
+        if not os.path.exists(output_dir):
+            os.makedirs(output_dir, exist_ok=True)
+            print(f"Created directory: {output_dir}")
         
         # Handle file conflicts
         return self.get_unique_filename(output_path, overwrite)

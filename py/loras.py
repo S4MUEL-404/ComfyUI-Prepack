@@ -223,7 +223,7 @@ class PrepackLoras:
         lora_path_parts = []
         for lora_name, strength_model, _ in loras_to_load:
             if lora_name != "None":  # Include all selected LoRAs regardless of strength
-                formatted_strength = f"{strength_model:.1f}"
+                formatted_strength = f"{strength_model:.2f}"
                 lora_path_parts.append(f"<lora:{lora_name}:{formatted_strength}>")
         lora_path_output = ", ".join(lora_path_parts)
         
