@@ -1,6 +1,6 @@
 # ComfyUI-Prepack
 
-**Version: 1.4.3**
+**Version: 1.5.0**
 
 A comprehensive workflow optimization toolkit for ComfyUI, providing essential nodes for model management, sampling control, and workflow enhancement with professional-grade reliability.
 
@@ -86,33 +86,6 @@ All dependencies are typically already available in standard ComfyUI installatio
 - ✅ **Logic Operations** - Comprehensive logic and comparison tools
 - ✅ **File Management** - Smart file saving with format preservation and custom naming
 
-## 📁 Project Structure
-
-```
-ComfyUI-Prepack/
-├── py/                 # Core node implementations
-│   ├── getpipe.py      # Pipeline retrieval
-│   ├── setpipe.py      # Pipeline storage
-│   ├── seed.py         # Seed management
-│   ├── loras.py        # LoRA management
-│   ├── ksampler.py     # Basic sampling
-│   ├── ksamplerAdvanced.py # Advanced sampling
-│   ├── modelDualCLIP.py    # Dual CLIP models
-│   ├── modelSingleCLIP.py  # Single CLIP models
-│   ├── logicInt.py     # Integer logic
-│   ├── logicString.py  # String logic
-│   ├── intCombine.py   # Integer combination
-│   ├── intSplit.py     # Integer splitting
-│   └── saveByFileName.py # Smart file saving
-├── js/                 # JavaScript UI extensions
-│   ├── seed.js         # Seed management UI
-│   ├── loraText.js     # LoRA text integration
-│   └── setgetnodes.js  # Pipeline node UI
-├── summary_md/         # Documentation and summaries
-├── __init__.py        # Plugin initialization
-└── requirements.txt   # Minimal dependencies
-```
-
 ## 🤝 Contributing
 
 Contributions are welcome! Please feel free to submit pull requests or report issues.
@@ -125,4 +98,5 @@ This project is open source. Please respect the licensing terms.
 
 **Author:** S4MUEL  
 **Website:** [s4muel.com](https://s4muel.com)  
-**Version:** 1.4.3
+**GitHub:** [https://github.com/S4MUEL-404/ComfyUI-Prepack](https://github.com/S4MUEL-404/ComfyUI-Prepack)  
+**Version:** 1.5.0

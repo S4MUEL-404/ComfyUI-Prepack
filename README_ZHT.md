@@ -1,6 +1,6 @@
 # ComfyUI-Prepack
 
-**版本: 1.4.3**
+**版本: 1.5.0**
 
 專為 ComfyUI 設計的綜合工作流優化工具包，提供模型管理、採樣控制和工作流強化的核心節點，具備專業級可靠性。
 
@@ -86,33 +86,6 @@
 - ✅ **邏輯運算** - 綜合邏輯和比較工具
 - ✅ **文件管理** - 智慧文件保存，具備格式保持和自訂命名功能
 
-## 📁 專案結構
-
-```
-ComfyUI-Prepack/
-├── py/                 # 核心節點實作
-│   ├── getpipe.py      # 管道取得
-│   ├── setpipe.py      # 管道儲存
-│   ├── seed.py         # 種子管理
-│   ├── loras.py        # LoRA 管理
-│   ├── ksampler.py     # 基本採樣
-│   ├── ksamplerAdvanced.py # 進階採樣
-│   ├── modelDualCLIP.py    # 雙 CLIP 模型
-│   ├── modelSingleCLIP.py  # 單 CLIP 模型
-│   ├── logicInt.py     # 整數邏輯
-│   ├── logicString.py  # 字串邏輯
-│   ├── intCombine.py   # 整數合併
-│   ├── intSplit.py     # 整數拆分
-│   └── saveByFileName.py # 智慧文件保存
-├── js/                 # JavaScript UI 擴展
-│   ├── seed.js         # 種子管理 UI
-│   ├── loraText.js     # LoRA 文本整合
-│   └── setgetnodes.js  # 管道節點 UI
-├── summary_md/         # 文件和總結
-├── __init__.py        # 外掛程式初始化
-└── requirements.txt   # 最小相依套件
-```
-
 ## 🤝 貢獻
 
 歡迎貢獻！請隨時提交 Pull Request 或回報問題。
@@ -125,4 +98,5 @@ ComfyUI-Prepack/
 
 **作者:** S4MUEL  
 **網站:** [s4muel.com](https://s4muel.com)  
-**版本:** 1.4.3
+**GitHub:** [https://github.com/S4MUEL-404/ComfyUI-Prepack](https://github.com/S4MUEL-404/ComfyUI-Prepack)  
+**版本:** 1.5.0
