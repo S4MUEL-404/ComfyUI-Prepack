@@ -32,6 +32,9 @@ A comprehensive workflow optimization toolkit for ComfyUI, providing essential n
 ### File Management
 - **💀Save By File Name** - Smart file saving with format preservation and custom naming. Supports images (WebP, JPEG, PNG, GIF), videos (MP4, AVI), and text files with automatic format detection
 
+### Workflow Tools
+- **💀Export Workflow as PNG** - Export complete workflow as PNG image with embedded workflow data or image only. Accessible via right-click canvas menu
+
 ## 📦 Installation
 
 ### Method 1: ComfyUI Manager (Recommended)
@@ -85,6 +88,7 @@ All dependencies are typically already available in standard ComfyUI installatio
 - ✅ **Seed Management** - Smart seed control with history tracking
 - ✅ **Logic Operations** - Comprehensive logic and comparison tools
 - ✅ **File Management** - Smart file saving with format preservation and custom naming
+- ✅ **Workflow Export** - Export workflow as PNG with embedded data support
 
 ## 🤝 Contributing
 
