@@ -1,6 +1,6 @@
 # ComfyUI-Prepack
 
-**Version: 1.5.0**
+**Version: 1.6.0**
 
 A comprehensive workflow optimization toolkit for ComfyUI, providing essential nodes for model management, sampling control, and workflow enhancement with professional-grade reliability.
 
@@ -28,6 +28,9 @@ A comprehensive workflow optimization toolkit for ComfyUI, providing essential n
 ### Integer Operations
 - **💀Prepack Int Combine** - Combine up to 4 integers into a string with selectable separator
 - **💀Prepack Int Split** - Split a string into up to 4 integers using selectable separator
+
+### Math Operations
+- **💀Prepack Calculator** - Evaluate mathematical expressions with variables a, b, c, d. Supports custom formulas like `(a*c)+d/2`. Outputs both integer and float results
 
 ### File Management
 - **💀Save By File Name** - Smart file saving with format preservation and custom naming. Supports images (WebP, JPEG, PNG, GIF), videos (MP4, AVI), and text files with automatic format detection
@@ -103,4 +106,4 @@ This project is open source. Please respect the licensing terms.
 **Author:** S4MUEL  
 **Website:** [s4muel.com](https://s4muel.com)  
 **GitHub:** [https://github.com/S4MUEL-404/ComfyUI-Prepack](https://github.com/S4MUEL-404/ComfyUI-Prepack)  
-**Version:** 1.5.0
+**Version:** 1.6.0
