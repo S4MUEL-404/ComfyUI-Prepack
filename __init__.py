@@ -14,6 +14,8 @@ from .py.intSplit import PrepackIntSplit
 from .py.saveByFileName import PrepackSaveByFileName
 from .py.condArea import PrepackCondArea
 from .py.calculator import PrepackCalculator
+from .py.mergeSelector import PrepackMergeSelector
+from .py.numberTypeConverter import PrepackNumberTypeConverter
 
 # Frontend extension directory for virtual nodes
 WEB_DIRECTORY = "./js"
@@ -35,6 +37,8 @@ NODE_CLASS_MAPPINGS = {
     "💀Prepack Save By File Name": PrepackSaveByFileName,
     "PrepackCondArea": PrepackCondArea,
     "💀Prepack Calculator": PrepackCalculator,
+    "💀Prepack Merge Selector": PrepackMergeSelector,
+    "💀Prepack Number Type Converter": PrepackNumberTypeConverter,
 }
 
 NODE_DISPLAY_NAME_MAPPINGS = {
@@ -54,6 +58,8 @@ NODE_DISPLAY_NAME_MAPPINGS = {
     "💀Prepack Save By File Name": "💀Save By File Name",
     "PrepackCondArea": "💀Prepack Cond Area",
     "💀Prepack Calculator": "💀Prepack Calculator",
+    "💀Prepack Merge Selector": "💀Prepack Merge Selector",
+    "💀Prepack Number Type Converter": "💀Prepack Number Type Converter",
 }
 
 __all__ = [
