@@ -1,6 +1,6 @@
 # ComfyUI-Prepack
 
-**版本: 1.6.0**
+**版本: 1.7.0**
 
 專為 ComfyUI 設計的綜合工作流優化工具包，提供模型管理、採樣控制和工作流強化的核心節點，具備專業級可靠性。
 
@@ -31,6 +31,9 @@
 
 ### 數學運算
 - **💀Prepack Calculator** - 使用變數 a、b、c、d 評估數學表達式。支援自訂公式如 `(a*c)+d/2`。同時輸出整數和浮點數結果
+
+### 類型轉換
+- **💀Prepack Number Type Converter** - 在字串、整數和浮點數類型之間進行轉換。接受任一類型並同時輸出全部三種類型
 
 ### 文件管理
 - **💀Save By File Name** - 智慧文件保存，具備格式保持和自訂命名功能。支援圖片（WebP、JPEG、PNG、GIF）、影片（MP4、AVI）和文本文件，具備自動格式檢測功能
@@ -106,4 +109,4 @@
 **作者:** S4MUEL  
 **網站:** [s4muel.com](https://s4muel.com)  
 **GitHub:** [https://github.com/S4MUEL-404/ComfyUI-Prepack](https://github.com/S4MUEL-404/ComfyUI-Prepack)  
-**版本:** 1.6.0
+**版本:** 1.7.0
